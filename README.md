@@ -42,7 +42,7 @@ Evaluated on unseen test data:
 | Accuracy  | ~0.44  |
 | Precision | ~0.27  |
 | Recall    | ~0.79  |
-| **F1 Score** | **~0.40** ⭐ |
+| **F1 Score** | **~0.40**  |
 
 Positive simulated trading PnL  
 Better than random baseline  
