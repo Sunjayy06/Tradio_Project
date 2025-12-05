@@ -1,51 +1,67 @@
-# TRADIO — Next-Candle Direction Prediction (NIFTY50)
+TRADIO — Next-Candle Direction Prediction (NIFTY50)
 
-This project applies Machine Learning to predict whether the "next intraday candle" will close higher than the current one (by using a minimal gain threshold). Predictions are used to simulate a simple trading strategy and evaluate overall profitability for the users using the model.
+This project applies Machine Learning to predict whether the next intraday candle will close higher than the current one based on a minimal gain threshold. Predictions are used to simulate a trading strategy and analyze potential profitability for better planning of users.
 
 ---
 
+ Project Structure
 
-
+```
 TRADIO_PROJECT/
 ├── data/                
+│   └── nifty50_ticks.csv
 ├── src/
-│   ├── model.py         
-│   └── prediction.py    
+│   ├── model.py           
+│   └── prediction.py      
 ├── results/
 │   └── final_trading_results.csv
 ├── requirements.txt
 └── README.md
+```
 
 ---
 
+ Workflow
 
-
-1) Load and clean intraday OHLC data  
-2) Generate price-action features (body, wicks, momentum, volatility)  
-3) Train multiple classical ML models + XGBoost + TF-MLP  
-4) Select best model based on **F1 score**  
-5) Perform probability threshold sweep  
-6) Generate trading signals → calculate PnL
-
----
-
- Best Model & Results
-
-XGBoost Classifier (evaluated on unseen test data)
-
-- F1 Score ≈ **0.40**
-- Positive Trading PnL ✔
-- Significant improvement over random baseline
-
-> Even a small predictive edge can be profitable when applied consistently in intraday trading 📈
+1) Load and process intraday OHLC data  
+2) Engineer price-action features (body, range, returns, volatility)  
+3) Train ML models: Logistic Regression, SVM, Decision Tree, Random Forest, Gradient Boosting  
+4) Train XGBoost (best performing model)  
+5) Probability threshold sweep for best trading signal quality  
+6) Generate signals & compute PnL results  
 
 ---
 
-#How to Run
+Best Performing Model
 
-```bash
+**Model**: XGBoost Classifier  
+Evaluated on unseen test data:
+
+| Metric     | Score  |
+|-----------|-------:|
+| Accuracy  | ~0.44  |
+| Precision | ~0.27  |
+| Recall    | ~0.79  |
+| **F1 Score** | **~0.40** ⭐ |
+
+Positive simulated trading PnL  
+Better than random baseline  
+High recall = captures most upward moves  
+
+
+ How to Run
+
+Install dependencies:
+
+bash
 pip install -r requirements.txt
 
+
+ Run training:
+bash
 cd src
-python model.py        
-python prediction.py  
+python model.py
+
+
+
+
