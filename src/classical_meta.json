@@ -1,0 +1,1 @@
+{"best_model_name": "XGBoost", "train_ratio": 0.7, "feature_cols": ["open", "high", "low", "close", "body", "upper_wick", "lower_wick", "range", "return_1", "return_3", "range_pct", "body_pct", "day"], "up_thresh": 0.00015, "is_tf_model": false}
