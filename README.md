@@ -1,4 +1,4 @@
-TRADIO — Next-Candle Direction Prediction (NIFTY50)
+**TRADIO — Next-Candle Direction Prediction (NIFTY50)**
 
 This project applies Machine Learning to predict whether the next intraday candle will close higher than the current one based on a minimal gain threshold. Predictions are used to simulate a trading strategy and analyze potential profitability for better planning of users.
 
@@ -19,20 +19,26 @@ TRADIO_PROJECT/
 └── README.md
 ```
 
----
+## Workflow
 
- Workflow
+1️)Load & preprocess intraday OHLC data  
+2️) Engineer price-action features  
+3️) Split data chronologically + scale using **StandardScaler**  
+4️) Train ML models:  
+   - Logistic Regression  
+   - SVM  
+   - Decision Tree  
+   - Random Forest  
+   - Gradient Boosting  
+   - **XGBoost**  
+   - TensorFlow MLP (benchmark)
 
-1) Load and process intraday OHLC data  
-2) Engineer price-action features (body, range, returns, volatility)  
-3) Train ML models: Logistic Regression, SVM, Decision Tree, Random Forest, Gradient Boosting  
-4) Train XGBoost (best performing model)  
-5) Probability threshold sweep for best trading signal quality  
-6) Generate signals & compute PnL results  
+5️) Select best model based on **F1-Score**  
+6️) Perform probability threshold sweep  
+7️) Generate buy signals & calculate PnL results
 
----
 
-Best Performing Model
+**Best Performing Model**
 
 **Model**: XGBoost Classifier  
 Evaluated on unseen test data:
@@ -48,18 +54,17 @@ Positive simulated trading PnL
 Better than random baseline  
 High recall = captures most upward moves  
 
-
- How to Run
-
+**How to Run**
 Install dependencies:
-
+```
 bash
 pip install -r requirements.txt
-
-
- Run training:
-bash
 ```
+
+ **Run training:**
+
+```
+bash
 cd src
 python model.py
 python prediction.py
