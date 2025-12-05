@@ -59,8 +59,11 @@ pip install -r requirements.txt
 
  Run training:
 bash
+'''
 cd src
 python model.py
+python prediction.py
+'''
 
 
 
